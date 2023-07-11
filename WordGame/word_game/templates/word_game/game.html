@@ -6,17 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Игра в слова</title>
 </head>
-<body>
+<body style="text-align: center; font-size: 45px;">
     <h1>{{ LONG_WORD }}</h1>
-
     <form action="" method="post">{% csrf_token %}
-        <input type="text" name="word" autocomplete="off">
-        <button type="submit">Добавить</button>
-    </form>
+    <input type="text" name="word" autocomplete="off" autofocus>
+    <button type="submit" name="add">Добавить</button>
     {% if my_word %}
         {% for word in my_word %}
             {{ word }}
         {% endfor %}
     {% endif %}
+    <p><button type="submit" name="check">Проверить</button></p>
+    </form>
 </body>
 </html>
