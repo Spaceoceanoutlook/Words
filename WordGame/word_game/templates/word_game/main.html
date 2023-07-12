@@ -8,8 +8,8 @@
 </head>
 <body style="text-align: center; font-size: 45px;">
     <p>ВВЕДИТЕ СЛОВО</p>
-    <form action="" method="post">{% csrf_token %}
-        <input type="text" name="long_word" autocomplete="off">
+    <form action="" method="post" >{% csrf_token %}
+        <input type="text" name="long_word" autocomplete="off" autofocus>
         <button type="submit">ИГРАТЬ</button>
     </form>
 </body>
