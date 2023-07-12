@@ -3,7 +3,7 @@ def open_words():
         return [line[:-1] for line in f.readlines()]
 
 
-def add_word(arr):
+def add_word(arr: list):
     with open('word_game/DB.txt', 'a', encoding='utf-8') as file:
         for word in arr:
             if word not in all_comp_words:
@@ -11,4 +11,34 @@ def add_word(arr):
                 file.write('\n')
 
 
+def check_user_words(my_arr: list, comp_arr: list):
+    text = f'Количество твоих слов: {len(my_arr)}, компьютера: {len(comp_arr)}. '
+    if len(my_arr) > len(comp_arr):
+        return f'{text} Вы победили!'
+    elif len(my_arr) < len(comp_arr):
+        return f'{text} Вы проиграли!'
+    else:
+        return f'{text} Ничья!'
+
+
+def search_words(arr: list, value: str):
+    for word in arr:
+        for symbol in word:
+            if symbol in value and value.count(symbol) >= word.count(symbol):
+                pass
+            else:
+                break
+        else:
+            comp_words.append(word)
+    if len(comp_words) == 0:
+        return 'Я не составил ни одного слова'
+    return f"{', '.join(comp_words)}"
+
+
+def my_words_list(word):
+    my_words.append(word)
+
+
 all_comp_words = open_words()
+comp_words = []
+my_words = []
