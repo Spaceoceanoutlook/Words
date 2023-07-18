@@ -39,6 +39,29 @@ def my_words_list(word):
     my_words.append(word)
 
 
+def open_records():
+    with open('word_game/records.txt', 'r', encoding='utf-8') as f:
+        data = f.readlines()
+        if data:
+            user, comp = data
+            return int(user), int(comp)
+        return 0, 0
+
+
+def save_records(user: int, comp: int):
+    with open('word_game/records.txt', 'w', encoding='utf-8') as f:
+        if len(my_words) > user:
+            f.write(str(len(my_words)))
+            f.write('\n')
+        else:
+            f.write(str(user))
+            f.write('\n')
+        if len(comp_words) > comp:
+            f.write(str(len(comp_words)))
+        else:
+            f.write(str(comp))
+
+
 all_comp_words = open_words()
 comp_words = []
 my_words = []
