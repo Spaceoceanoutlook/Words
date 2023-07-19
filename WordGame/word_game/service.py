@@ -52,9 +52,10 @@ def open_records():
         return 0, 0
 
 
-def save_records(user: int, comp: int):
+def save_records(user: int, comp: int, l_w: str):
     with open('word_game/records.txt', 'w', encoding='utf-8') as f:
         if len(my_words) > user:
+            save_long_word(l_w)
             f.write(str(len(my_words)))
             f.write('\n')
         else:
@@ -64,6 +65,17 @@ def save_records(user: int, comp: int):
             f.write(str(len(comp_words)))
         else:
             f.write(str(comp))
+
+
+def save_long_word(long_word: str):
+    with open('word_game/long_word.txt', 'w', encoding='utf-8') as f:
+        f.write(long_word)
+
+
+def open_long_word():
+    with open('word_game/long_word.txt', 'r', encoding='utf-8') as f:
+        data = f.readlines()
+        return ''.join(data)
 
 
 all_comp_words = open_words()

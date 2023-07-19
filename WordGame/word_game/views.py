@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .service import all_comp_words, add_word, check_user_words, search_words, \
-    comp_words, my_words_list_add, my_words, open_records, save_records, my_words_list_cancel
+    comp_words, my_words_list_add, my_words, open_records, save_records, my_words_list_cancel, \
+    open_long_word
 
 
 LONG_WORD = ''
@@ -28,7 +29,7 @@ def game(request):
         result_check = check_user_words(my_words, comp_words)
         string_my_words = ', '.join(my_words)
         add_word(my_words)
-        save_records(user_record_from_txt, comp_record_from_txt)
+        save_records(user_record_from_txt, comp_record_from_txt, LONG_WORD)
         context = {'result_search_words': result_search_words, 'result_check': result_check,
                    'string_my_words': string_my_words, 'LONG_WORD': LONG_WORD}
         return render(request, 'word_game/check.html', context=context)
@@ -38,6 +39,9 @@ def game(request):
 
 
 def records(request):
+    long_word = open_long_word()
     user_record_from_txt, comp_record_from_txt = open_records()
-    context = {'user_record_from_txt': user_record_from_txt, 'comp_record_from_txt': comp_record_from_txt}
+    context = {'user_record_from_txt': user_record_from_txt,
+               'comp_record_from_txt': comp_record_from_txt,
+               'long_word': long_word}
     return render(request, 'word_game/records.html', context=context)

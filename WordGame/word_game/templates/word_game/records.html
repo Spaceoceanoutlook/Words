@@ -6,7 +6,7 @@
     <title>Рекорды</title>
 </head>
 <body style="text-align: center; font-size: 45px;">
-    <p>Рекорд игрока: {{ user_record_from_txt }}</p>
+    <p>Рекорд игрока: {{ user_record_from_txt }} слов, составленных из слова "{{ long_word }}"</p>
     <p>Рекорд компьютера: {{ comp_record_from_txt }}</p>
     <p><a href="{% url 'main' %}">Назад</a></p>
 </body>
