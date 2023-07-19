@@ -35,8 +35,12 @@ def search_words(arr: list, value: str):
     return f"{', '.join(comp_words)}"
 
 
-def my_words_list(word):
+def my_words_list_add(word):
     my_words.append(word)
+
+
+def my_words_list_cancel():
+    del my_words[-1]
 
 
 def open_records():

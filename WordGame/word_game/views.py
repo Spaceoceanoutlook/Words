@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .service import all_comp_words, add_word, check_user_words, search_words, \
-    comp_words, my_words_list, my_words, open_records, save_records
+    comp_words, my_words_list_add, my_words, open_records, save_records, my_words_list_cancel
 
 
 LONG_WORD = ''
@@ -17,7 +17,10 @@ def main(request):
 def game(request):
     if request.method == 'POST' and 'add' in request.POST:
         word = request.POST.get('word')
-        my_words_list(word)
+        my_words_list_add(word)
+        return redirect('game')
+    if request.method == 'POST' and 'cancel' in request.POST:
+        my_words_list_cancel()
         return redirect('game')
     if request.method == 'POST' and 'check' in request.POST:
         user_record_from_txt, comp_record_from_txt = open_records()
