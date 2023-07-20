@@ -19,7 +19,11 @@
      </i></p>
     <p>Слова компьютера: <i>
         {% for i in result_search_words %}
-            {{ i }}
+            {% if i in my_words %}
+                {{ i }}
+            {% else %}
+                <b>{{ i }}</b>
+            {% endif %}
         {% endfor %}
     </i></p>
     <p>{{ result_check }}</p>

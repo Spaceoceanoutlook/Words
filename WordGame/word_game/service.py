@@ -31,7 +31,7 @@ def search_words(arr: list, value: str):
         else:
             comp_words.append(word)
     if len(comp_words) == 0:
-        return 'Я не составил ни одного слова'
+        return ['Я', 'не', 'составил', 'ни', 'одного', 'слова']
     return comp_words
 
 
@@ -52,10 +52,10 @@ def open_records():
         return 0, 0
 
 
-def save_records(user: int, comp: int, l_w: str):
+def save_records(user: int, comp: int, value: str):
     with open('word_game/records.txt', 'w', encoding='utf-8') as f:
         if len(my_words) > user:
-            save_long_word(l_w)
+            save_long_word(value)
             f.write(str(len(my_words)))
             f.write('\n')
         else:
@@ -78,6 +78,16 @@ def open_long_word():
         return ''.join(data)
 
 
+class SaveLongWord:
+    LONG_WORD = None
+
+    @classmethod
+    def __init__(cls, word):
+        cls.LONG_WORD = word
+
+
 all_comp_words = open_words()
 comp_words = []
 my_words = []
+
+
