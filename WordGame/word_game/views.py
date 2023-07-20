@@ -27,11 +27,10 @@ def game(request):
         user_record_from_txt, comp_record_from_txt = open_records()
         result_search_words = search_words(all_comp_words, LONG_WORD)
         result_check = check_user_words(my_words, comp_words)
-        string_my_words = ', '.join(my_words)
         add_word(my_words)
         save_records(user_record_from_txt, comp_record_from_txt, LONG_WORD)
         context = {'result_search_words': result_search_words, 'result_check': result_check,
-                   'string_my_words': string_my_words, 'LONG_WORD': LONG_WORD}
+                   'my_words': my_words, 'LONG_WORD': LONG_WORD}
         return render(request, 'word_game/check.html', context=context)
     else:
         context = {'my_word': my_words, 'LONG_WORD': LONG_WORD}

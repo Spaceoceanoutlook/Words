@@ -8,8 +8,20 @@
 </head>
 <body style="text-align: center; font-size: 45px;">
     <h1>{{ LONG_WORD }}</h1>
-    <p>Твои слова: <i>{{ string_my_words }}</i></p>
-    <p>Слова компьютера: <i>{{ result_search_words }}</i></p>
+    <p>Твои слова:<i>
+    {% for i in my_words %}
+        {% if i in result_search_words %}
+            {{ i }}
+        {% else %}
+            <b>{{ i }}</b>
+        {% endif %}
+    {% endfor %}
+     </i></p>
+    <p>Слова компьютера: <i>
+        {% for i in result_search_words %}
+            {{ i }}
+        {% endfor %}
+    </i></p>
     <p>{{ result_check }}</p>
 </body>
 </html>

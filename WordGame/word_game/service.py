@@ -32,7 +32,7 @@ def search_words(arr: list, value: str):
             comp_words.append(word)
     if len(comp_words) == 0:
         return 'Я не составил ни одного слова'
-    return f"{', '.join(comp_words)}"
+    return comp_words
 
 
 def my_words_list_add(word):
