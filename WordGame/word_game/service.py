@@ -24,7 +24,7 @@ def check_user_words(my_arr: list, comp_arr: list):
 def search_words(arr: list, value: str):
     for word in arr:
         for symbol in word:
-            if symbol in value and value.count(symbol) >= word.count(symbol):
+            if symbol in value.lower() and value.lower().count(symbol) >= word.count(symbol):
                 pass
             else:
                 break
@@ -82,8 +82,8 @@ class SaveLongWord:
     LONG_WORD = None
 
     @classmethod
-    def __init__(cls, word):
-        cls.LONG_WORD = word
+    def __init__(cls, word: str):
+        cls.LONG_WORD = word.capitalize()
 
 
 all_comp_words = open_words()

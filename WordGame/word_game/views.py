@@ -5,6 +5,8 @@ from .service import all_comp_words, add_word, check_user_words, search_words, \
 
 
 def main(request):
+    my_words.clear()
+    comp_words.clear()
     if request.method == 'POST':
         long_word = request.POST.get('long_word')
         SaveLongWord(long_word)

@@ -1,9 +1,11 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <title>Игра в слова</title>
 </head>
 <body style="text-align: center; font-size: 45px;">
@@ -27,5 +29,8 @@
         {% endfor %}
     </i></p>
     <p>{{ result_check }}</p>
+    <p>
+        <a href="{% url 'main' %}">Играть еще</a>
+    </p>
 </body>
 </html>
