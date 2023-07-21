@@ -12,16 +12,16 @@
     <h1>{{ LONG_WORD }}</h1>
     <form action="" method="post">{% csrf_token %}
     <input type="text" name="word" autocomplete="off" autofocus>
-    <p><button style="width: 300px; height: 50px; font-size: 30px; background-color: #228B22"
+    <p><button style="width: 300px; height: 50px; font-size: 30px; background-color: white"
                type="submit" name="add">ДОБАВИТЬ СЛОВО</button></p>
     {% if my_word %}
         {% for word in my_word %}
             {{ word }}
         {% endfor %}
     {% endif %}
-    <p><button style="width: 300px; height: 50px; font-size: 30px; background-color: #DC143C"
+    <p><button style="width: 300px; height: 50px; font-size: 30px; background-color: white"
                type="submit" name="cancel">УБРАТЬ СЛОВО</button></p>
-        <p><button style="width: 300px; height: 50px; font-size: 30px; background-color: #40E0D0"
+        <p><button style="width: 300px; height: 50px; font-size: 30px; background-color: white"
                    type="submit" name="check">ЗАКОНЧИТЬ ИГРУ</button></p>
     </form>
 </body>
