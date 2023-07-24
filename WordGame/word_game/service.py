@@ -35,8 +35,12 @@ def search_words(arr: list, value: str):
     return comp_words
 
 
-def my_words_list_add(word):
-    my_words.append(word)
+def my_words_list_add(word: str):
+    if word.lower() not in my_words:
+        my_words.append(word)
+    else:
+        return 'Такое слово уже есть'
+    return None
 
 
 def my_words_list_cancel():

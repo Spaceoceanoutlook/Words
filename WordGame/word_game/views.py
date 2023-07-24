@@ -17,8 +17,11 @@ def main(request):
 def game(request):
     if request.method == 'POST' and 'add' in request.POST:
         word = request.POST.get('word')
-        my_words_list_add(word)
-        return redirect('game')
+        word_repetition = my_words_list_add(word)
+        context = {'word_repetition': word_repetition,
+                   'my_word': my_words,
+                   'LONG_WORD': SaveLongWord.LONG_WORD}
+        return render(request, 'word_game/game.html', context=context)
     if request.method == 'POST' and 'cancel' in request.POST:
         my_words_list_cancel()
         return redirect('game')
