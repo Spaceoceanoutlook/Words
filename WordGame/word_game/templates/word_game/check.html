@@ -13,7 +13,7 @@
 </head>
 <body>
     <h1>{{ LONG_WORD }}</h1>
-    <p>Твои слова:
+    <p>Ваши слова:
     {% for word in my_words %}
         {% if word in result_search_words and word != last_elem_in_my_words %}
             {{ word }},
@@ -24,6 +24,7 @@
         {% elif word not in result_search_words and word == last_elem_in_my_words %}
             <b>{{ word }}</b>
         {% endif %}
+        {% empty %} Вы не составили ни одного слова
     {% endfor %}
     </p>
     <p>Слова компьютера:
@@ -36,7 +37,6 @@
                 <b>{{ word }},</b>
             {% elif word not in my_words and word == last_elem_in_comp_words %}
                 <b>{{ word }}</b>
-
             {% endif %}
         {% empty %} Я не составил ни одного слова
         {% endfor %}

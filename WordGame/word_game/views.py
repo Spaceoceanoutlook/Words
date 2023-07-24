@@ -32,8 +32,14 @@ def game(request):
         result_search_words = search_words(all_comp_words, SaveLongWord.LONG_WORD)
         result_check = check_user_words(my_words, comp_words)
         add_word(my_words)
-        last_elem_in_my_words = my_words[-1]
-        last_elem_in_comp_words = comp_words[-1]
+        if my_words:
+            last_elem_in_my_words = my_words[-1]
+        else:
+            last_elem_in_my_words = []
+        if comp_words:
+            last_elem_in_comp_words = comp_words[-1]
+        else:
+            last_elem_in_comp_words = []
         save_records(user_record_from_txt, comp_record_from_txt, SaveLongWord.LONG_WORD)
         context = {'result_search_words': result_search_words, 'result_check': result_check,
                    'my_words': my_words, 'LONG_WORD': SaveLongWord.LONG_WORD,
