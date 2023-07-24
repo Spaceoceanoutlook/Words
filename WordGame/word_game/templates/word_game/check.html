@@ -5,29 +5,42 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <title>Игра в слова</title>
 </head>
-<body style="text-align: center; font-size: 45px;">
+<body>
     <h1>{{ LONG_WORD }}</h1>
-    <p>Твои слова:<i>
-    {% for i in my_words %}
-        {% if i in result_search_words %}
-            {{ i }}
-        {% else %}
-            <b>{{ i }}</b>
+    <p>Твои слова:
+    {% for word in my_words %}
+        {% if word in result_search_words and word != last_elem_in_my_words %}
+            {{ word }},
+        {% elif word in result_search_words and word == last_elem_in_my_words %}
+            {{ word }}
+        {% elif word not in result_search_words and word != last_elem_in_my_words %}
+            <b>{{ word }},</b>
+        {% elif word not in result_search_words and word == last_elem_in_my_words %}
+            <b>{{ word }}</b>
         {% endif %}
     {% endfor %}
-     </i></p>
-    <p>Слова компьютера: <i>
-        {% for i in result_search_words %}
-            {% if i in my_words %}
-                {{ i }}
-            {% else %}
-                <b>{{ i }}</b>
+    </p>
+    <p>Слова компьютера:
+        {% for word in result_search_words %}
+            {% if word in my_words and word != last_elem_in_comp_words %}
+                {{ word }},
+            {% elif word in my_words and word == last_elem_in_comp_words %}
+                {{ word }}
+            {% elif word not in my_words and word != last_elem_in_comp_words %}
+                <b>{{ word }},</b>
+            {% elif word not in my_words and word == last_elem_in_comp_words %}
+                <b>{{ word }}</b>
+
             {% endif %}
+        {% empty %} Я не составил ни одного слова
         {% endfor %}
-    </i></p>
+    </p>
     <p>{{ result_check }}</p>
     <p>
         <a href="{% url 'main' %}">Играть еще</a>

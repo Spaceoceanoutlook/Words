@@ -23,6 +23,8 @@ def check_user_words(my_arr: list, comp_arr: list):
 
 def search_words(arr: list, value: str):
     for word in arr:
+        if word.lower() == value.lower():
+            continue
         for symbol in word:
             if symbol in value.lower() and value.lower().count(symbol) >= word.count(symbol):
                 pass
@@ -30,8 +32,6 @@ def search_words(arr: list, value: str):
                 break
         else:
             comp_words.append(word)
-    if len(comp_words) == 0:
-        return ['Я', 'не', 'составил', 'ни', 'одного', 'слова']
     return comp_words
 
 

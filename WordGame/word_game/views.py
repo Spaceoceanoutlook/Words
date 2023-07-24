@@ -18,9 +18,11 @@ def game(request):
     if request.method == 'POST' and 'add' in request.POST:
         word = request.POST.get('word')
         word_repetition = my_words_list_add(word)
+        last_elem_in_my_words = my_words[-1]
         context = {'word_repetition': word_repetition,
                    'my_word': my_words,
-                   'LONG_WORD': SaveLongWord.LONG_WORD}
+                   'LONG_WORD': SaveLongWord.LONG_WORD,
+                   'last_elem_in_my_words': last_elem_in_my_words}
         return render(request, 'word_game/game.html', context=context)
     if request.method == 'POST' and 'cancel' in request.POST:
         my_words_list_cancel()
@@ -30,9 +32,13 @@ def game(request):
         result_search_words = search_words(all_comp_words, SaveLongWord.LONG_WORD)
         result_check = check_user_words(my_words, comp_words)
         add_word(my_words)
+        last_elem_in_my_words = my_words[-1]
+        last_elem_in_comp_words = comp_words[-1]
         save_records(user_record_from_txt, comp_record_from_txt, SaveLongWord.LONG_WORD)
         context = {'result_search_words': result_search_words, 'result_check': result_check,
-                   'my_words': my_words, 'LONG_WORD': SaveLongWord.LONG_WORD}
+                   'my_words': my_words, 'LONG_WORD': SaveLongWord.LONG_WORD,
+                   'last_elem_in_comp_words': last_elem_in_comp_words,
+                   'last_elem_in_my_words': last_elem_in_my_words}
         return render(request, 'word_game/check.html', context=context)
     else:
         context = {'my_word': my_words, 'LONG_WORD': SaveLongWord.LONG_WORD}

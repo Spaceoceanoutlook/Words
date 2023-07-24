@@ -5,30 +5,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <title>Игра в слова</title>
 </head>
-<body style="text-align: center; font-size: 45px;">
+<body>
     <h1>{{ LONG_WORD }}</h1>
     <form action="" method="post">{% csrf_token %}
-
-    <button style="width: 300px; height: 50px; font-size: 30px; background-color: white"
-               type="submit" name="add">ДОБАВИТЬ СЛОВО</button>
-    <button style="width: 300px; height: 50px; font-size: 30px; background-color: white"
-               type="submit" name="cancel">УБРАТЬ СЛОВО</button>
-        <button style="width: 300px; height: 50px; font-size: 30px; background-color: white"
-                   type="submit" name="check">ЗАКОНЧИТЬ ИГРУ</button>
+    <button type="submit" name="add">ДОБАВИТЬ СЛОВО</button>
+    <button type="submit" name="cancel">УБРАТЬ СЛОВО</button>
+        <button type="submit" name="check">ЗАКОНЧИТЬ ИГРУ</button>
         <p><input type="text" name="word" autocomplete="off" autofocus></p>
         <p>
             {% if word_repetition %}
-            <span style="color: red; font-size: 25px">{{ word_repetition }}</span>
+                <span style="color: red; font-size: 25px">{{ word_repetition }}</span>
             {% endif %}
         </p>
         {% if my_word %}
-        {% for word in my_word %}
-            {{ word }}
-        {% endfor %}
-    {% endif %}
+            {% for word in my_word %}
+                {% if word == last_elem_in_my_words %}
+                    {{ word }}
+                {% else %}
+                    {{ word }},
+                {% endif %}
+            {% endfor %}
+        {% endif %}
     </form>
 </body>
 </html>

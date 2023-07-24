@@ -5,15 +5,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <title>Игра в слова</title>
 </head>
 <body>
-    <p>ВВЕДИТЕ СЛОВО</p>
+    <div style="margin-top: 300px;">
+    <p>Введите слово:</p>
     <form action="" method="post" >{% csrf_token %}
         <input type="text" name="long_word" autocomplete="off" autofocus>
-        <p><button style="width: 150px; height: 50px; font-size: 30px;" type="submit">ИГРАТЬ</button></p>
+        <p><button type="submit">ИГРАТЬ</button></p>
     </form>
+    </div>
     <a href="{% url 'records' %}">Посмотреть рекорды</a>
 </body>
 </html>
