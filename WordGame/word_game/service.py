@@ -35,11 +35,21 @@ def search_words(arr: list, value: str):
     return comp_words
 
 
-def my_words_list_add(word: str):
-    if word.lower() not in my_words:
-        my_words.append(word)
-    else:
-        return 'Такое слово уже есть'
+def my_words_list_add(word: str, param: str | None):
+    if param is None:
+        if word.lower() not in my_words:
+            my_words.append(word)
+        else:
+            return 'Такое слово уже есть'
+    return None
+
+
+def check_my_word(word: str, value: str):
+    for symbol in word:
+        if symbol in value.lower() and value.lower().count(symbol) >= word.count(symbol):
+            pass
+        else:
+            return 'Такое слово составить нельзя'
     return None
 
 

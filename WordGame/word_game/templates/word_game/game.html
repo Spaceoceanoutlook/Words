@@ -22,6 +22,9 @@
             {% if word_repetition %}
                 <span style="color: red; font-size: 25px">{{ word_repetition }}</span>
             {% endif %}
+            {% if no_passed %}
+                <span style="color: red; font-size: 25px">{{ no_passed }}</span>
+            {% endif %}
         </p>
         {% if my_word %}
             {% for word in my_word %}
