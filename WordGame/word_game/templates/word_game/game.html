@@ -28,7 +28,11 @@
         </p>
         {% if my_word %}
             {% for word in my_word %}
-                {% if word == last_elem_in_my_words %}
+                {% if word == my_word.0 and word == last_elem_in_my_words %}
+                    {{ word | title }}
+                {% elif word == my_word.0 and word != last_elem_in_my_words %}
+                    {{ word | title }},
+                {% elif word == last_elem_in_my_words %}
                     {{ word }}
                 {% else %}
                     {{ word }},
