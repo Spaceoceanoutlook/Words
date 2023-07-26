@@ -108,4 +108,3 @@ all_comp_words = open_words()
 comp_words = []
 my_words = []
 
-
