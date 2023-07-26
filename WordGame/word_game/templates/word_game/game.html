@@ -14,16 +14,21 @@
 <body>
     <h1>{{ LONG_WORD }}</h1>
     <form action="" method="post">{% csrf_token %}
-    <button type="submit" name="add">ДОБАВИТЬ СЛОВО</button>
-    <button type="submit" name="cancel">УБРАТЬ СЛОВО</button>
+        <button type="submit" name="add">ДОБАВИТЬ СЛОВО</button>
+        <button type="submit" name="cancel">УБРАТЬ СЛОВО</button>
+        <button type="submit" name="count">ПОСЧИТАТЬ СЛОВА</button>
         <button type="submit" name="check">ЗАКОНЧИТЬ ИГРУ</button>
         <p><input type="text" name="word" autocomplete="off" autofocus></p>
+    </form>
         <p>
             {% if word_repetition %}
                 <span style="color: red; font-size: 25px">{{ word_repetition }}</span>
             {% endif %}
             {% if no_passed %}
                 <span style="color: red; font-size: 25px">{{ no_passed }}</span>
+            {% endif %}
+            {% if text_count %}
+                <span style="color: blue; font-size: 35px">{{ text_count }}</span>
             {% endif %}
         </p>
         {% if my_word %}
@@ -39,6 +44,6 @@
                 {% endif %}
             {% endfor %}
         {% endif %}
-    </form>
+
 </body>
 </html>

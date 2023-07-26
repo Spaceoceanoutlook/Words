@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .service import all_comp_words, add_word, check_user_words, search_words, \
     comp_words, my_words_list_add, my_words, open_records, save_records, my_words_list_cancel, \
-    open_long_word, SaveLongWord, check_my_word
+    open_long_word, SaveLongWord, check_my_word, count_words
 
 
 def main(request):
@@ -20,15 +20,22 @@ def game(request):
         no_passed = check_my_word(word, SaveLongWord.LONG_WORD)
         word_repetition = my_words_list_add(word, no_passed)
         last_elem_in_my_words = my_words[-1]
-        context = {'word_repetition': word_repetition,
-                   'no_passed': no_passed,
-                   'my_word': my_words,
-                   'LONG_WORD': SaveLongWord.LONG_WORD,
-                   'last_elem_in_my_words': last_elem_in_my_words}
+        context = {'word_repetition': word_repetition, 'no_passed': no_passed,
+                   'last_elem_in_my_words': last_elem_in_my_words, 'my_word': my_words,
+                   'LONG_WORD': SaveLongWord.LONG_WORD}
         return render(request, 'word_game/game.html', context=context)
     if request.method == 'POST' and 'cancel' in request.POST:
         my_words_list_cancel()
-        return redirect('game')
+        last_elem_in_my_words = my_words[-1]
+        context = {'last_elem_in_my_words': last_elem_in_my_words,
+                   'my_word': my_words, 'LONG_WORD': SaveLongWord.LONG_WORD}
+        return render(request, 'word_game/game.html', context=context)
+    if request.method == 'POST' and 'count' in request.POST:
+        text_count = count_words()
+        last_elem_in_my_words = my_words[-1]
+        context = {'text_count': text_count, 'last_elem_in_my_words': last_elem_in_my_words,
+                   'my_word': my_words, 'LONG_WORD': SaveLongWord.LONG_WORD}
+        return render(request, 'word_game/game.html', context=context)
     if request.method == 'POST' and 'check' in request.POST:
         user_record_from_txt, comp_record_from_txt = open_records()
         result_search_words = search_words(all_comp_words, SaveLongWord.LONG_WORD)

@@ -1,6 +1,6 @@
 def open_words():
     with open('word_game/DB.txt', 'r', encoding='utf-8') as f:
-        return [line[:-1] for line in f.readlines()]
+        return {line[:-1] for line in f.readlines()}
 
 
 def add_word(arr: list):
@@ -12,7 +12,7 @@ def add_word(arr: list):
 
 
 def check_user_words(my_arr: list, comp_arr: list):
-    text = f'Количество твоих слов: {len(my_arr)}, компьютера: {len(comp_arr)}. '
+    text = f'Количество ваших слов: {len(my_arr)}, компьютера: {len(comp_arr)}. '
     if len(my_arr) > len(comp_arr):
         return f'{text} Вы победили!'
     elif len(my_arr) < len(comp_arr):
@@ -55,6 +55,10 @@ def check_my_word(word: str, value: str):
 
 def my_words_list_cancel():
     del my_words[-1]
+
+
+def count_words():
+    return f'Количество ваших слов: {len(my_words)}'
 
 
 def open_records():
