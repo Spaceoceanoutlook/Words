@@ -34,7 +34,7 @@
             {% elif word in my_words and word == last_elem_in_comp_words %}
                 {{ word }}
             {% elif word not in my_words and word != last_elem_in_comp_words %}
-                <b>{{ word }},</b>
+                <b>{{ word }}</b>,
             {% elif word not in my_words and word == last_elem_in_comp_words %}
                 <b>{{ word }}</b>
             {% endif %}
@@ -42,8 +42,9 @@
         {% endfor %}
     </p>
     <p>{{ result_check }}</p>
-    <p>
+    <p style="margin-bottom: 25px">
         <a href="{% url 'main' %}">Играть еще</a>
     </p>
+    <a href="#">Сохранить игру</a>
 </body>
 </html>

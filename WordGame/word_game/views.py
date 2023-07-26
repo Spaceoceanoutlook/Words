@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .service import all_comp_words, add_word, check_user_words, search_words, \
-    comp_words, my_words_list_add, my_words, open_records, save_records, my_words_list_cancel, \
-    open_long_word, SaveLongWord, check_my_word, count_words
+    comp_words, my_words_list_add, my_words, my_words_list_cancel, \
+    SaveLongWord, check_my_word, count_words, open_records, save_records, open_long_word
 
 
 def main(request):
