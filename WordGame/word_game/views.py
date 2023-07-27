@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .service import all_comp_words, add_word, check_user_words, search_words, \
     comp_words, my_words_list_add, my_words, my_words_list_cancel, \
-    SaveLongWord, check_my_word, count_words, open_records, save_records, open_long_word
+    SaveLongWord, check_my_word, count_words, open_records, save_this_game, delete_seved_game
 
 
 def main(request):
@@ -35,7 +35,6 @@ def game(request):
         new_context = {'text_count': text_count, 'last_elem_in_my_words': last_elem_in_my_words} | context
         return render(request, 'word_game/game.html', context=new_context)
     if request.method == 'POST' and 'check' in request.POST:
-        user_record_from_txt, comp_record_from_txt = open_records()
         result_search_words = search_words(all_comp_words, SaveLongWord.LONG_WORD)
         result_check = check_user_words(my_words, comp_words)
         add_word(my_words)
@@ -47,19 +46,21 @@ def game(request):
             last_elem_in_comp_words = comp_words[-1]
         else:
             last_elem_in_comp_words = []
-        save_records(user_record_from_txt, comp_record_from_txt, SaveLongWord.LONG_WORD)
+        save_this_game(SaveLongWord.LONG_WORD, len(my_words), len(comp_words))  # сохраняем в БД
         context = {'result_search_words': result_search_words, 'result_check': result_check,
                    'my_words': my_words, 'LONG_WORD': SaveLongWord.LONG_WORD,
                    'last_elem_in_comp_words': last_elem_in_comp_words,
-                   'last_elem_in_my_words': last_elem_in_my_words}
+                   'last_elem_in_my_words': last_elem_in_my_words,}
         return render(request, 'word_game/check.html', context=context)
     return render(request, 'word_game/game.html', context=context)
 
 
-def records(request):
-    long_word = open_long_word()
-    user_record_from_txt, comp_record_from_txt = open_records()
-    context = {'user_record_from_txt': user_record_from_txt,
-               'comp_record_from_txt': comp_record_from_txt,
-               'long_word': long_word}
-    return render(request, 'word_game/records.html', context=context)
+def savedgames(request):
+    saved_games = open_records()
+    context = {'saved_games': saved_games}
+    return render(request, 'word_game/savedgames.html', context=context)
+
+
+def delete_game(request, pk):
+    delete_seved_game(pk)
+    return redirect('savedgames')

@@ -1,14 +1,17 @@
+from .models import Word, Save
+
+
 def open_words():
-    with open('word_game/DB.txt', 'r', encoding='utf-8') as f:
-        return {line[:-1] for line in f.readlines()}
+    words = []
+    for i in Word.objects.all():
+        words.append(i.word)
+    return words
 
 
 def add_word(arr: list):
-    with open('word_game/DB.txt', 'a', encoding='utf-8') as file:
-        for word in arr:
-            if word not in all_comp_words:
-                file.writelines(word)
-                file.write('\n')
+    for word in arr:
+        if word not in all_comp_words:
+            Word.objects.create(word=word)
 
 
 def check_user_words(my_arr: list, comp_arr: list):
@@ -62,38 +65,14 @@ def count_words():
 
 
 def open_records():
-    with open('word_game/records.txt', 'r', encoding='utf-8') as f:
-        data = f.readlines()
-        if data:
-            user, comp = data
-            return int(user), int(comp)
-        return 0, 0
+    game_info = []
+    for i in Save.objects.all():
+        game_info.append(i)
+    return game_info
 
 
-def save_records(user: int, comp: int, value: str):
-    with open('word_game/records.txt', 'w', encoding='utf-8') as f:
-        if len(my_words) > user:
-            save_long_word(value)
-            f.write(str(len(my_words)))
-            f.write('\n')
-        else:
-            f.write(str(user))
-            f.write('\n')
-        if len(comp_words) > comp:
-            f.write(str(len(comp_words)))
-        else:
-            f.write(str(comp))
-
-
-def save_long_word(long_word: str):
-    with open('word_game/long_word.txt', 'w', encoding='utf-8') as f:
-        f.write(long_word)
-
-
-def open_long_word():
-    with open('word_game/long_word.txt', 'r', encoding='utf-8') as f:
-        data = f.readlines()
-        return ''.join(data)
+def save_this_game(value: str, user: int, comp: int):
+    Save.objects.create(long_word=value, player_points=user, comp_points=comp)
 
 
 class SaveLongWord:
@@ -102,6 +81,10 @@ class SaveLongWord:
     @classmethod
     def __init__(cls, word: str):
         cls.LONG_WORD = word.capitalize()
+
+
+def delete_seved_game(param: int):
+    Save.objects.filter(pk=param).delete()
 
 
 all_comp_words = open_words()

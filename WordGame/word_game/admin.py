@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import Word, Save
 
-# Register your models here.
+admin.site.register(Word)
+admin.site.register(Save)
+
+

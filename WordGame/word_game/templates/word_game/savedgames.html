@@ -12,8 +12,10 @@
     <title>Игра в слова</title>
 </head>
 <body>
-    <p>Рекорд игрока: {{ user_record_from_txt }} слов, составленных из слова "{{ long_word }}"</p>
-    <p>Рекорд компьютера: {{ comp_record_from_txt }}</p>
+    {% for i in saved_games %}
+    <p>"{{ i.long_word }}" &nbsp&nbsp&nbsp Количество ваших слов: {{ i.player_points }},
+        компьютера: {{ i.comp_points }} <a href="{% url 'delete_game' pk=i.pk %}">Удалить</a></p>
+    {% endfor %}
     <p><a href="{% url 'main' %}">Назад</a></p>
 </body>
 </html>
