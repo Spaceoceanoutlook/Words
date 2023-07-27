@@ -9,13 +9,27 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <title>Игра в слова</title>
+    <title>История игр</title>
 </head>
 <body>
+
+<table>
+    <tr>
+        <td width="350">Слово</td>
+        <td width="650">Количество слов игрока</td>
+        <td width="700">Количество слов компьютера</td>
+        <td width="150"></td>
+    </tr>
     {% for i in saved_games %}
-    <p>"{{ i.long_word }}" &nbsp&nbsp&nbsp Количество ваших слов: {{ i.player_points }},
-        компьютера: {{ i.comp_points }} <a href="{% url 'delete_game' pk=i.pk %}">Удалить</a></p>
+      <tr>
+          <td>{{ i.long_word }}</td>
+          <td>{{ i.player_points }}</td>
+          <td>{{ i.comp_points }}</td>
+          <td><a href="{% url 'delete_game' pk=i.pk %}">Удалить</a></td>
+      </tr>
     {% endfor %}
+</table>
+
     <p><a href="{% url 'main' %}">Назад</a></p>
 </body>
 </html>

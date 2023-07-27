@@ -27,3 +27,15 @@ button {
     height: 50px;
     font-size: 25px;
 }
+
+table {
+    margin: auto;
+    border-collapse: collapse;
+
+}
+
+td {
+    text-align: center;
+    border: 2px solid;
+    border-color: gray;
+}

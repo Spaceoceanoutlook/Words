@@ -1,3 +1,5 @@
+from django.shortcuts import get_object_or_404
+
 from .models import Word, Save
 
 
@@ -84,7 +86,7 @@ class SaveLongWord:
 
 
 def delete_seved_game(param: int):
-    Save.objects.filter(pk=param).delete()
+    get_object_or_404(Save, pk=param).delete()
 
 
 all_comp_words = open_words()

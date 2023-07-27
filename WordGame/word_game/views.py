@@ -62,5 +62,6 @@ def savedgames(request):
 
 
 def delete_game(request, pk):
-    delete_seved_game(pk)
+    if request.method == 'GET':
+        delete_seved_game(pk)
     return redirect('savedgames')
