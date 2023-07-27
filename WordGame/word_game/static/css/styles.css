@@ -31,11 +31,11 @@ button {
 table {
     margin: auto;
     border-collapse: collapse;
-
 }
 
 td {
     text-align: center;
     border: 2px solid;
     border-color: gray;
+    font-size: 35px
 }
