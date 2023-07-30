@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .service import all_comp_words, add_word, check_user_words, search_words, \
     comp_words, my_words_list_add, my_words, my_words_list_cancel, \
-    SaveLongWord, check_my_word, count_words, open_records, save_this_game, delete_seved_game
+    SaveLongWord, check_my_word, count_words, open_records, save_this_game, delete_seved_game, sort_savedgame
 
 
 def main(request):
@@ -57,6 +57,8 @@ def game(request):
 
 def savedgames(request):
     saved_games = open_records()
+    if request.method == 'POST':
+        saved_games = sort_savedgame()
     context = {'saved_games': saved_games}
     return render(request, 'word_game/savedgames.html', context=context)
 

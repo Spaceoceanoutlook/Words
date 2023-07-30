@@ -1,6 +1,12 @@
 from django.shortcuts import get_object_or_404
-
 from .models import Word, Save
+
+
+def sort_savedgame():
+    save_game = []
+    for i in Save.objects.order_by('-player_points'):
+        save_game.append(i)
+    return save_game
 
 
 def open_words():

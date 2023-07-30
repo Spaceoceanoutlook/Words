@@ -12,11 +12,13 @@
     <title>История игр</title>
 </head>
 <body>
-
 <table>
     <tr>
         <td width="350">Слово</td>
-        <td width="650">Количество слов игрока</td>
+        <td width="650">Количество слов игрока
+            <form style="display: inline;" action="" method="post">{% csrf_token %}
+                <button style="width: 30px; height:35px; border: none; background-color: WhiteSmoke;" type="submit">&#11014;</button>
+            </form></td>
         <td width="700">Количество слов компьютера</td>
         <td width="150"></td>
     </tr>
@@ -30,6 +32,6 @@
     {% endfor %}
 </table>
 
-    <p><a href="{% url 'main' %}">Назад</a></p>
+<p><a href="{% url 'main' %}">Назад</a></p>
 </body>
 </html>
