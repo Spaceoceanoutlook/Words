@@ -3,10 +3,7 @@ from .models import Word, Save
 
 
 def sort_savedgame():
-    save_game = []
-    for i in Save.objects.order_by('-player_points'):
-        save_game.append(i)
-    return save_game
+    return Save.objects.order_by('-player_points')
 
 
 def open_words():
@@ -73,10 +70,7 @@ def count_words():
 
 
 def open_records():
-    game_info = []
-    for i in Save.objects.all():
-        game_info.append(i)
-    return game_info
+    return Save.objects.all()
 
 
 def save_this_game(value: str, user: int, comp: int):
